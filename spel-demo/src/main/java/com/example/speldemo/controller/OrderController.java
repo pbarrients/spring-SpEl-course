@@ -1,12 +1,16 @@
 package com.example.speldemo.controller;
 
+import com.example.speldemo.data.City;
 import com.example.speldemo.data.Order;
+import com.example.speldemo.data.Shipping;
 import com.example.speldemo.data.User;
 import org.apache.coyote.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/order")
@@ -16,6 +20,12 @@ public class OrderController {
 
     @Autowired
     User user;
+
+    @Autowired
+    Shipping shipping;
+
+    @Autowired
+    City city;
 
     @RequestMapping(value = "/customer", method = RequestMethod.GET)
     public String getCustomer(){
@@ -46,4 +56,10 @@ public class OrderController {
     public String getFormattedOrderAmount(){
         return order.getFormattedAmount();
     }
+
+    @RequestMapping(value = "/shipping/locations", method = RequestMethod.GET)
+    public List<City> getShippingLocations(){
+        return  order.getShippingLocations();
+    }
+
 }

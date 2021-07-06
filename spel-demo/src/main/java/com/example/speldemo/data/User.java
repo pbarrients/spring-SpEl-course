@@ -20,9 +20,6 @@ public class User {
         this.language = language;
     }
 
-    public User() {
-    }
-
     public String getName() {
         return name;
     }
